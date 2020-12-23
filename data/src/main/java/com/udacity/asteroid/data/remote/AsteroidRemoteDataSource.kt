@@ -7,6 +7,7 @@ import com.udacity.asteroid.data.response.AsteroidResponse
 import com.udacity.asteroid.data.source.asteroid.AsteroidDataSource
 import com.udacity.asteroid.data.storage.database.AsteroidDao
 import com.udacity.asteroid.data.util.NetworkUtils
+import com.udacity.asteroid.data.util.RetrofitErrorUtil
 import com.udacity.asteroid.domain.model.AsteroidModel
 import com.udacity.asteroid.domain.model.ErrorModel
 import com.udacity.asteroid.domain.util.ResultType
