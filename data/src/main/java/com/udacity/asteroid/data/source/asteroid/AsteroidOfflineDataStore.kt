@@ -1,4 +1,4 @@
-package com.udacity.asteroid.data.source
+package com.udacity.asteroid.data.source.asteroid
 
 interface AsteroidOfflineDataStore : AsteroidDataStore {
 

@@ -1,4 +1,4 @@
-package com.udacity.asteroid.data.source
+package com.udacity.asteroid.data.source.asteroid
 
 import com.udacity.asteroid.domain.model.AsteroidModel
 import com.udacity.asteroid.domain.model.ErrorModel
