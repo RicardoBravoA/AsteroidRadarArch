@@ -6,7 +6,7 @@ import com.udacity.asteroid.domain.util.ResultType
 
 class FakeAsteroidRepository : AsteroidRepository {
 
-    var data: LinkedHashMap<String, AsteroidModel> = LinkedHashMap()
+    var data: LinkedHashMap<Long, AsteroidModel> = LinkedHashMap()
 
     private var shouldReturnError = false
 
@@ -22,6 +22,12 @@ class FakeAsteroidRepository : AsteroidRepository {
             return ResultType.Error(ErrorModel("Test exception"))
         }
         return ResultType.Success(data.values.toList())
+    }
+
+    override suspend fun saveAsteroid(list: List<AsteroidModel>) {
+        list.forEach {
+            data[it.id] = it
+        }
     }
 
 }
