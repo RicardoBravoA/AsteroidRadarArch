@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.udacity.asteroid.radar.SecondFragment"
+        android:name="com.udacity.asteroid.radar.detail.DetailFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second">
 
