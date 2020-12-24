@@ -6,16 +6,16 @@ import com.udacity.asteroid.domain.model.AsteroidModel
 
 object AsteroidMapper {
 
-    fun transformAsteroidResponseToEntity(asteroidResponse: AsteroidResponse): AsteroidEntity {
+    fun transformAsteroidModelToEntity(asteroidModel: AsteroidModel): AsteroidEntity {
         return AsteroidEntity(
-            asteroidResponse.id,
-            asteroidResponse.codename,
-            asteroidResponse.closeApproachDate,
-            asteroidResponse.absoluteMagnitude,
-            asteroidResponse.estimatedDiameter,
-            asteroidResponse.relativeVelocity,
-            asteroidResponse.distanceFromEarth,
-            asteroidResponse.isPotentiallyHazardous
+            asteroidModel.id,
+            asteroidModel.codename,
+            asteroidModel.closeApproachDate,
+            asteroidModel.absoluteMagnitude,
+            asteroidModel.estimatedDiameter,
+            asteroidModel.relativeVelocity,
+            asteroidModel.distanceFromEarth,
+            asteroidModel.isPotentiallyHazardous
         )
     }
 

@@ -1,4 +1,4 @@
-package com.udacity.asteroid.data.storage.source
+package com.udacity.asteroid.data.source.asteroid
 
 import com.udacity.asteroid.data.mapper.AsteroidMapper
 import com.udacity.asteroid.data.storage.database.AsteroidDao
@@ -22,6 +22,10 @@ class AsteroidLocalDataSource(private val asteroidDao: AsteroidDao) : AsteroidRe
         } catch (t: Throwable) {
             return@withContext ResultType.Error(ErrorModel())
         }
+    }
+
+    override suspend fun saveAsteroid(list: List<AsteroidModel>) {
+        // Do nothing
     }
 
 }
