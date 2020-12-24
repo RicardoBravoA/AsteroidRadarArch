@@ -9,14 +9,14 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="Theme.AsteroidRadarArch.NoActionBar">
+    <style name="Theme.AsteroidRadar.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.AsteroidRadarArch.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.AsteroidRadar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="Theme.AsteroidRadarArch.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.AsteroidRadar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="BaseTextView">
         <item name="android:textColor">@color/default_text_color</item>
