@@ -4,8 +4,9 @@ import com.udacity.asteroid.data.mapper.ErrorMapper
 import com.udacity.asteroid.data.mapper.PictureMapper
 import com.udacity.asteroid.data.network.ApiManagerMoshi
 import com.udacity.asteroid.data.response.PictureResponse
-import com.udacity.asteroid.data.source.picture.PictureDataSource
+import com.udacity.asteroid.domain.repository.PictureRepository
 import com.udacity.asteroid.data.storage.database.AsteroidDao
+import com.udacity.asteroid.data.util.ErrorUtil
 import com.udacity.asteroid.data.util.RetrofitErrorUtil
 import com.udacity.asteroid.domain.model.ErrorModel
 import com.udacity.asteroid.domain.model.PictureModel
@@ -13,8 +14,8 @@ import com.udacity.asteroid.domain.util.ResultType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class PictureRemoteDataSource(private val asteroidDao: AsteroidDao) :
-    PictureDataSource {
+class PictureRemoteRepository(private val asteroidDao: AsteroidDao) :
+    PictureRepository {
 
     override suspend fun get(): ResultType<PictureModel, ErrorModel> {
 
@@ -34,7 +35,7 @@ class PictureRemoteDataSource(private val asteroidDao: AsteroidDao) :
             }
 
         } catch (t: Throwable) {
-            ResultType.Error(ErrorUtils.errorHandler(t))
+            ResultType.Error(ErrorUtil.errorHandler(t))
         }
     }
 

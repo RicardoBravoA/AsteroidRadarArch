@@ -1,6 +1,8 @@
 package com.udacity.asteroid.data.source.asteroid
 
-interface AsteroidOfflineDataSource : AsteroidDataSource {
+import com.udacity.asteroid.domain.repository.AsteroidRepository
+
+interface AsteroidOfflineDataSource : AsteroidRepository {
 
     suspend fun delete(currentDate: String)
 

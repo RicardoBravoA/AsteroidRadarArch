@@ -4,7 +4,7 @@ import com.udacity.asteroid.data.mapper.AsteroidMapper
 import com.udacity.asteroid.data.mapper.ErrorMapper
 import com.udacity.asteroid.data.network.ApiManager
 import com.udacity.asteroid.data.response.AsteroidResponse
-import com.udacity.asteroid.data.source.asteroid.AsteroidDataSource
+import com.udacity.asteroid.domain.repository.AsteroidRepository
 import com.udacity.asteroid.data.storage.database.AsteroidDao
 import com.udacity.asteroid.data.util.NetworkUtils
 import com.udacity.asteroid.data.util.RetrofitErrorUtil
@@ -14,8 +14,8 @@ import com.udacity.asteroid.domain.util.ResultType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class AsteroidRemoteDataSource(private val asteroidDao: AsteroidDao) :
-    AsteroidDataSource {
+class AsteroidRemoteRepository(private val asteroidDao: AsteroidDao) :
+    AsteroidRepository {
 
     override suspend fun list(
         startDate: String,
