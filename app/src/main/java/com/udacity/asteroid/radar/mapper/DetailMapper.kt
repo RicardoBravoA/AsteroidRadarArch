@@ -2,7 +2,9 @@ package com.udacity.asteroid.radar.mapper
 
 import android.content.Context
 import com.udacity.asteroid.domain.model.AsteroidModel
+import com.udacity.asteroid.domain.model.DetailItemModel
 import com.udacity.asteroid.radar.R
+import com.udacity.asteroid.radar.detail.DetailModel
 
 object DetailMapper {
 
@@ -19,17 +21,20 @@ object DetailMapper {
         return list
     }
 
-    private fun transformItem(context: Context, asteroidModel: AsteroidModel): List<DetailItem> {
-        val detailList = mutableListOf<DetailItem>()
+    private fun transformItem(
+        context: Context,
+        asteroidModel: AsteroidModel
+    ): List<DetailItemModel> {
+        val detailList = mutableListOf<DetailItemModel>()
 
         val closeApproach =
-            DetailItem(
+            DetailItemModel(
                 context.getString(R.string.close_approach_data_title),
                 asteroidModel.closeApproachDate
             )
 
         val absoluteMagnitude =
-            DetailItem(
+            DetailItemModel(
                 context.getString(R.string.absolute_magnitude_title),
                 String.format(
                     context.getString(R.string.astronomical_unit_format),
@@ -38,7 +43,7 @@ object DetailMapper {
             )
 
         val estimatedDiameter =
-            DetailItem(
+            DetailItemModel(
                 context.getString(R.string.estimated_diameter_title),
                 String.format(
                     context.getString(R.string.km_unit_format),
@@ -47,7 +52,7 @@ object DetailMapper {
             )
 
         val relativeVelocity =
-            DetailItem(
+            DetailItemModel(
                 context.getString(R.string.relative_velocity_title),
                 String.format(
                     context.getString(R.string.km_s_unit_format),
@@ -56,7 +61,7 @@ object DetailMapper {
             )
 
         val distanceFromEarth =
-            DetailItem(
+            DetailItemModel(
                 context.getString(R.string.distance_from_earth_title),
                 String.format(
                     context.getString(R.string.astronomical_unit_format),
