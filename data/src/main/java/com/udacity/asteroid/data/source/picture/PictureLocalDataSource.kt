@@ -21,4 +21,8 @@ class PictureLocalDataSource(private val asteroidDao: AsteroidDao) : PictureRepo
         }
     }
 
+    override suspend fun savePicture(pictureModel: PictureModel) {
+        //Do nothing
+    }
+
 }
