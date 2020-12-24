@@ -1,15 +1,15 @@
 package com.udacity.asteroid.data.storage.source
 
 import com.udacity.asteroid.data.mapper.PictureMapper
-import com.udacity.asteroid.data.source.picture.PictureOfflineDataSource
 import com.udacity.asteroid.data.storage.database.AsteroidDao
 import com.udacity.asteroid.domain.model.ErrorModel
 import com.udacity.asteroid.domain.model.PictureModel
+import com.udacity.asteroid.domain.repository.PictureRepository
 import com.udacity.asteroid.domain.util.ResultType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class PictureLocalDataSource(private val asteroidDao: AsteroidDao) : PictureOfflineDataSource {
+class PictureLocalDataSource(private val asteroidDao: AsteroidDao) : PictureRepository {
 
     override suspend fun get(): ResultType<PictureModel, ErrorModel> = withContext(Dispatchers.IO) {
 
@@ -21,7 +21,4 @@ class PictureLocalDataSource(private val asteroidDao: AsteroidDao) : PictureOffl
         }
     }
 
-    override suspend fun delete() {
-        asteroidDao.deletePicture()
-    }
 }
