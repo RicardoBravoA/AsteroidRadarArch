@@ -4,8 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.udacity.asteroid.data.util.DataDateUtil
+import com.udacity.asteroid.domain.model.AsteroidModel
+import com.udacity.asteroid.domain.model.PictureModel
 import com.udacity.asteroid.domain.repository.AsteroidRepository
 import com.udacity.asteroid.domain.repository.PictureRepository
+import com.udacity.asteroid.domain.util.ResultType
 import com.udacity.asteroid.radar.mapper.MainMapper
 import com.udacity.asteroid.radar.util.NetworkStatus
 import kotlinx.coroutines.coroutineScope
@@ -48,12 +52,11 @@ class MainViewModel(
     fun saved() {
         getData(
             DataDateUtil.currentDate(),
-            DataDateUtil.currentDate(DataDateUtil.DEFAULT_END_DATE_DAYS),
-            true
+            DataDateUtil.currentDate(DataDateUtil.DEFAULT_END_DATE_DAYS)
         )
     }
 
-    private fun getData(startDate: String, endDate: String, isSavedData: Boolean = false) {
+    private fun getData(startDate: String, endDate: String) {
         viewModelScope.launch {
             _status.value = NetworkStatus.LOADING
 
@@ -63,43 +66,21 @@ class MainViewModel(
                     var items = listOf<AsteroidModel>()
                     var picture: PictureModel? = null
 
-                    if (isSavedData) {
-                        when (val result = pictureOfflineUseCase.get()) {
-                            is ResultType.Success -> {
-                                picture = result.value
-                            }
-                            is ResultType.Error -> {
-                                //Do nothing
-                            }
+                    when (val result = pictureRepository.get()) {
+                        is ResultType.Success -> {
+                            picture = result.value
                         }
-                    } else {
-                        when (val result = pictureUseCase.get()) {
-                            is ResultType.Success -> {
-                                picture = result.value
-                            }
-                            is ResultType.Error -> {
-                                //Do nothing
-                            }
+                        is ResultType.Error -> {
+                            //Do nothing
                         }
                     }
 
-                    if (isSavedData) {
-                        when (val result = asteroidOfflineUseCase.list(startDate, endDate)) {
-                            is ResultType.Success -> {
-                                items = result.value
-                            }
-                            is ResultType.Error -> {
-                                //Do nothing
-                            }
+                    when (val result = asteroidRepository.list(startDate, endDate)) {
+                        is ResultType.Success -> {
+                            items = result.value
                         }
-                    } else {
-                        when (val result = asteroidUseCase.list(startDate, endDate)) {
-                            is ResultType.Success -> {
-                                items = result.value
-                            }
-                            is ResultType.Error -> {
-                                //Do nothing
-                            }
+                        is ResultType.Error -> {
+                            //Do nothing
                         }
                     }
 
