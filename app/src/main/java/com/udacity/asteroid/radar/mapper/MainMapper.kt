@@ -2,6 +2,7 @@ package com.udacity.asteroid.radar.mapper
 
 import com.udacity.asteroid.domain.model.AsteroidModel
 import com.udacity.asteroid.domain.model.PictureModel
+import com.udacity.asteroid.radar.main.MainItem
 
 object MainMapper {
 
