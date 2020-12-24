@@ -23,6 +23,6 @@
 
         <argument
             android:name="asteroidModel"
-            app:argType="com.udacity.asteroid.radar.domain.model.AsteroidModel" />
+            app:argType="com.udacity.asteroid.domain.model.AsteroidModel" />
     </fragment>
 </navigation>
