@@ -1,9 +1,7 @@
 package com.udacity.asteroid.data.source.picture
 
 import android.content.Context
-import com.udacity.asteroid.data.remote.PictureRemoteRepository
 import com.udacity.asteroid.data.storage.database.AsteroidDatabase
-import com.udacity.asteroid.data.storage.source.PictureLocalDataSource
 import com.udacity.asteroid.data.util.isInternet
 import com.udacity.asteroid.domain.repository.PictureRepository
 

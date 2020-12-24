@@ -1,4 +1,4 @@
-package com.udacity.asteroid.data.remote
+package com.udacity.asteroid.data.source.picture
 
 import com.udacity.asteroid.data.mapper.ErrorMapper
 import com.udacity.asteroid.data.mapper.PictureMapper

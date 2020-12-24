@@ -1,4 +1,4 @@
-package com.udacity.asteroid.data.storage.source
+package com.udacity.asteroid.data.source.asteroid
 
 import com.udacity.asteroid.data.mapper.AsteroidMapper
 import com.udacity.asteroid.data.storage.database.AsteroidDao
