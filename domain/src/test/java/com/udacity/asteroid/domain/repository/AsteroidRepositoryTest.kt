@@ -10,6 +10,7 @@ import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.Is.`is`
 import org.hamcrest.core.IsEqual
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -74,6 +75,12 @@ class AsteroidRepositoryTest {
         assertFalse((asteroidRepository.data.isEmpty()))
         assertThat(asteroidRepository.data, `is`(list))
         assertThat(asteroidRepository.data.size, `is`(list.size))
+    }
+
+    @Test
+    fun save_Error() = mainCoroutineRule.runBlockingTest {
+        assertTrue((asteroidRepository.data.isEmpty()))
+        assertThat(asteroidRepository.data.size, `is`(0))
     }
 
 }
