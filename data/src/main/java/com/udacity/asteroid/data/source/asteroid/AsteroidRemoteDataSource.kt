@@ -11,7 +11,7 @@ import com.udacity.asteroid.domain.model.AsteroidModel
 import com.udacity.asteroid.domain.model.ErrorModel
 import com.udacity.asteroid.domain.util.ResultType
 
-class AsteroidRemoteRepository(private val asteroidDao: AsteroidDao) :
+class AsteroidRemoteDataSource(private val asteroidDao: AsteroidDao) :
     AsteroidRepository {
 
     override suspend fun list(

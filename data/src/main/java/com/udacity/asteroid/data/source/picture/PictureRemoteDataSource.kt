@@ -14,7 +14,7 @@ import com.udacity.asteroid.domain.util.ResultType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class PictureRemoteRepository(private val asteroidDao: AsteroidDao) :
+class PictureRemoteDataSource(private val asteroidDao: AsteroidDao) :
     PictureRepository {
 
     override suspend fun get(): ResultType<PictureModel, ErrorModel> {

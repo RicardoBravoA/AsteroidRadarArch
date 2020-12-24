@@ -12,7 +12,7 @@ class AsteroidDataSourceFactory(private val context: Context) {
         val value = if (context.isInternet()) Preference.CLOUD else Preference.DB
 
         return if (Preference.CLOUD == value) {
-            AsteroidRemoteRepository(asteroidDatabase.asteroidDao)
+            AsteroidRemoteDataSource(asteroidDatabase.asteroidDao)
         } else {
             AsteroidLocalDataSource(asteroidDatabase.asteroidDao)
         }
