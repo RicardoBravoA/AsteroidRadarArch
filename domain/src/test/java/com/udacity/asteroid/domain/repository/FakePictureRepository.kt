@@ -6,7 +6,7 @@ import com.udacity.asteroid.domain.util.ResultType
 
 class FakePictureRepository : PictureRepository {
 
-    private var data: PictureModel? = null
+    var data: PictureModel? = null
 
     private var shouldReturnError = false
 
