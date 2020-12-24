@@ -10,4 +10,6 @@ interface AsteroidRepository {
         startDate: String,
         endDate: String
     ): ResultType<List<AsteroidModel>, ErrorModel>
+
+    suspend fun saveAsteroid(list: List<AsteroidModel>)
 }

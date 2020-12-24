@@ -24,4 +24,8 @@ class AsteroidLocalDataSource(private val asteroidDao: AsteroidDao) : AsteroidRe
         }
     }
 
+    override suspend fun saveAsteroid(list: List<AsteroidModel>) {
+        // Do nothing
+    }
+
 }
