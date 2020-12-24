@@ -6,8 +6,10 @@ import com.udacity.asteroid.domain.util.MainCoroutineRule
 import com.udacity.asteroid.domain.util.ResultType
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
-import org.hamcrest.MatcherAssert
+import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.core.Is.`is`
 import org.hamcrest.core.IsEqual
+import org.junit.Assert.assertFalse
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -55,7 +57,7 @@ class AsteroidRepositoryTest {
         asteroidRepository.setReturnError(false)
 
         val data = asteroidRepository.list("startDate", "endDate") as ResultType.Success
-        MatcherAssert.assertThat(data.value, IsEqual(result))
+        assertThat(data.value, IsEqual(result))
     }
 
     @Test
@@ -63,7 +65,15 @@ class AsteroidRepositoryTest {
         asteroidRepository.setReturnError(true)
 
         val data = asteroidRepository.list("startDate", "endDate") as ResultType.Error
-        MatcherAssert.assertThat(data.value, IsEqual(error))
+        assertThat(data.value, IsEqual(error))
+    }
+
+    @Test
+    fun save_Success() = mainCoroutineRule.runBlockingTest {
+        asteroidRepository.saveAsteroid(result)
+        assertFalse((asteroidRepository.data.isEmpty()))
+        assertThat(asteroidRepository.data, `is`(list))
+        assertThat(asteroidRepository.data.size, `is`(list.size))
     }
 
 }
