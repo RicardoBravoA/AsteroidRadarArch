@@ -43,6 +43,7 @@ class PictureRepositoryTest {
         pictureRepository.setReturnError(true)
 
         val data = pictureRepository.get() as ResultType.Error
+        Assert.assertNotNull(data.value)
         assertThat(data.value, IsEqual(error))
     }
 
@@ -60,7 +61,6 @@ class PictureRepositoryTest {
 
     @Test
     fun validateData_Success() = mainCoroutineRule.runBlockingTest {
-
         pictureRepository.savePicture(pictureModel)
         pictureRepository.setReturnError(false)
 
@@ -75,6 +75,19 @@ class PictureRepositoryTest {
         Assert.assertEquals(model.title, pictureModel.title)
         Assert.assertEquals(model.date, pictureModel.date)
         Assert.assertEquals(model.explanation, pictureModel.explanation)
+    }
+
+    @Test
+    fun validateData_Error() = mainCoroutineRule.runBlockingTest {
+        pictureRepository.setReturnError(true)
+
+        val data = pictureRepository.get() as ResultType.Error
+        Assert.assertNotNull(data.value)
+        assertThat(data.value, IsEqual(error))
+
+        val model = data.value
+
+        Assert.assertEquals(model.message, error.message)
     }
 
 }
