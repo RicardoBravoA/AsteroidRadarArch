@@ -58,4 +58,23 @@ class PictureRepositoryTest {
         Assert.assertNull((pictureRepository.data))
     }
 
+    @Test
+    fun validateData_Success() = mainCoroutineRule.runBlockingTest {
+
+        pictureRepository.savePicture(pictureModel)
+        pictureRepository.setReturnError(false)
+
+        val data = pictureRepository.get() as ResultType.Success
+        val model = data.value
+
+        Assert.assertNotNull(model)
+        assertThat(model, Is.`is`(pictureModel))
+
+        Assert.assertEquals(model.url, pictureModel.url)
+        Assert.assertEquals(model.mediaType, pictureModel.mediaType)
+        Assert.assertEquals(model.title, pictureModel.title)
+        Assert.assertEquals(model.date, pictureModel.date)
+        Assert.assertEquals(model.explanation, pictureModel.explanation)
+    }
+
 }

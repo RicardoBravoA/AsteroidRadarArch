@@ -83,7 +83,7 @@ class AsteroidRepositoryTest {
     }
 
     @Test
-    fun validateData() = mainCoroutineRule.runBlockingTest {
+    fun validateData_Success() = mainCoroutineRule.runBlockingTest {
 
         val delta = 1e-15
 
@@ -105,7 +105,6 @@ class AsteroidRepositoryTest {
         assertEquals(model.relativeVelocity, asteroidModel1.relativeVelocity, delta)
         assertEquals(model.distanceFromEarth, asteroidModel1.distanceFromEarth, delta)
         assertEquals(model.isPotentiallyHazardous, asteroidModel1.isPotentiallyHazardous)
-
     }
 
 }
