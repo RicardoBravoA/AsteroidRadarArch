@@ -10,6 +10,8 @@ import com.udacity.asteroid.data.util.RetrofitErrorUtil
 import com.udacity.asteroid.domain.model.AsteroidModel
 import com.udacity.asteroid.domain.model.ErrorModel
 import com.udacity.asteroid.domain.util.ResultType
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class AsteroidRemoteDataSource(private val asteroidDao: AsteroidDao) :
     AsteroidRepository {
@@ -31,7 +33,7 @@ class AsteroidRemoteDataSource(private val asteroidDao: AsteroidDao) :
         }
     }
 
-    override suspend fun saveAsteroid(list: List<AsteroidModel>) {
+    override suspend fun saveAsteroid(list: List<AsteroidModel>) = withContext(Dispatchers.IO) {
         list.forEach {
             asteroidDao.insertAsteroid(
                 AsteroidMapper.transformAsteroidModelToEntity(
