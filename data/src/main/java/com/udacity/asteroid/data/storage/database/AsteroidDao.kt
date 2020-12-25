@@ -13,6 +13,9 @@ interface AsteroidDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAsteroid(asteroid: AsteroidEntity)
 
+    @Query("select * from asteroid where id = :id")
+    fun getAsteroidById(id: Long): AsteroidEntity
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertPicture(picture: PictureEntity)
 

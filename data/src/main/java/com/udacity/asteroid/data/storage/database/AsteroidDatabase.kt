@@ -9,7 +9,7 @@ import com.udacity.asteroid.data.storage.entity.PictureEntity
 
 @Database(entities = [AsteroidEntity::class, PictureEntity::class], version = 1)
 abstract class AsteroidDatabase : RoomDatabase() {
-    abstract val asteroidDao: AsteroidDao
+    abstract fun asteroidDao(): AsteroidDao
 
     companion object {
         @Volatile
