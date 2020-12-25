@@ -6,8 +6,8 @@ import com.udacity.asteroid.domain.repository.AsteroidRepository
 import com.udacity.asteroid.domain.util.ResultType
 
 class AsteroidRemoteDataSourceTest(private var data: LinkedHashMap<Long, AsteroidModel>) :
-
     AsteroidRepository {
+
     override suspend fun list(
         startDate: String,
         endDate: String

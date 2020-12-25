@@ -3,7 +3,6 @@ package com.udacity.asteroid.data.source.picture
 import com.udacity.asteroid.data.mapper.ErrorMapper
 import com.udacity.asteroid.data.mapper.PictureMapper
 import com.udacity.asteroid.data.network.ApiManagerMoshi
-import com.udacity.asteroid.data.response.PictureResponse
 import com.udacity.asteroid.domain.repository.PictureRepository
 import com.udacity.asteroid.data.storage.database.AsteroidDao
 import com.udacity.asteroid.data.util.ErrorUtil
@@ -23,7 +22,11 @@ class PictureRemoteDataSource(private val asteroidDao: AsteroidDao) :
             val response = ApiManagerMoshi.get().pictureOfTheDay()
             if (response.isSuccessful) {
                 val pictureOfTheDayResponse = response.body()!!
-                savePicture(pictureOfTheDayResponse)
+                savePicture(
+                    PictureMapper.transformResponseToModel(
+                        pictureOfTheDayResponse
+                    )
+                )
                 ResultType.Success(
                     PictureMapper.transformResponseToModel(
                         pictureOfTheDayResponse
@@ -39,11 +42,11 @@ class PictureRemoteDataSource(private val asteroidDao: AsteroidDao) :
         }
     }
 
-    private suspend fun savePicture(pictureResponse: PictureResponse) =
+    override suspend fun savePicture(pictureModel: PictureModel) =
         withContext(Dispatchers.IO) {
             asteroidDao.deletePicture()
             asteroidDao.insertPicture(
-                PictureMapper.transformResponseToEntity(pictureResponse)
+                PictureMapper.transformModelToEntity(pictureModel)
             )
         }
 

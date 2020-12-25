@@ -6,13 +6,13 @@ import com.udacity.asteroid.domain.model.PictureModel
 
 object PictureMapper {
 
-    fun transformResponseToEntity(pictureResponse: PictureResponse): PictureEntity {
+    fun transformModelToEntity(pictureModel: PictureModel): PictureEntity {
         return PictureEntity(
-            pictureResponse.url,
-            pictureResponse.mediaType,
-            pictureResponse.title,
-            pictureResponse.date,
-            pictureResponse.explanation
+            pictureModel.url,
+            pictureModel.mediaType,
+            pictureModel.title,
+            pictureModel.date,
+            pictureModel.explanation
         )
     }
 
