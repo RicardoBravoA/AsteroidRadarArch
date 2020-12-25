@@ -65,6 +65,7 @@ class AsteroidRepositoryTest {
         asteroidRepository.setReturnError(true)
 
         val data = asteroidRepository.list("startDate", "endDate") as ResultType.Error
+        assertNotNull(data.value)
         assertThat(data.value, IsEqual(error))
     }
 
@@ -105,6 +106,19 @@ class AsteroidRepositoryTest {
         assertEquals(model.relativeVelocity, asteroidModel1.relativeVelocity, delta)
         assertEquals(model.distanceFromEarth, asteroidModel1.distanceFromEarth, delta)
         assertEquals(model.isPotentiallyHazardous, asteroidModel1.isPotentiallyHazardous)
+    }
+
+    @Test
+    fun validateData_Error() = mainCoroutineRule.runBlockingTest {
+        asteroidRepository.setReturnError(true)
+
+        val data = asteroidRepository.list("startDate", "endDate") as ResultType.Error
+        assertNotNull(data.value)
+        assertThat(data.value, IsEqual(error))
+
+        val model = data.value
+
+        assertEquals(model.message, error.message)
     }
 
 }
