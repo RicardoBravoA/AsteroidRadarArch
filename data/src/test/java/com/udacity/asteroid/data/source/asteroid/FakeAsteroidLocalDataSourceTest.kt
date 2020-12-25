@@ -5,8 +5,15 @@ import com.udacity.asteroid.domain.model.ErrorModel
 import com.udacity.asteroid.domain.repository.AsteroidRepository
 import com.udacity.asteroid.domain.util.ResultType
 
-class AsteroidLocalDataSourceTest(private var data: LinkedHashMap<Long, AsteroidModel>) :
-    AsteroidRepository {
+class FakeAsteroidLocalDataSourceTest : AsteroidRepository {
+
+    var data: LinkedHashMap<Long, AsteroidModel> = LinkedHashMap()
+
+    private var shouldReturnError = false
+
+    fun setReturnError(value: Boolean) {
+        shouldReturnError = value
+    }
 
     override suspend fun list(
         startDate: String,
