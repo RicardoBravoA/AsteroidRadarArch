@@ -31,6 +31,14 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    testOptions.unitTests {
+        includeAndroidResources = true
+        returnDefaultValues = true
+    }
+    packagingOptions {
+        pickFirst  'META-INF/*'
+        pickFirst '**/META-INFMANIFEST.MF'
+    }
 }
 
 dependencies {

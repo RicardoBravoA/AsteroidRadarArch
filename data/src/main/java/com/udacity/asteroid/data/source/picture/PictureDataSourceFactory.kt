@@ -12,9 +12,9 @@ class PictureDataSourceFactory(private val context: Context) {
         val value = if (context.isInternet()) Preference.CLOUD else Preference.DB
 
         return if (Preference.CLOUD == value) {
-            PictureRemoteDataSource(asteroidDatabase.asteroidDao)
+            PictureRemoteDataSource(asteroidDatabase.asteroidDao())
         } else {
-            PictureLocalDataSource(asteroidDatabase.asteroidDao)
+            PictureLocalDataSource(asteroidDatabase.asteroidDao())
         }
     }
 
