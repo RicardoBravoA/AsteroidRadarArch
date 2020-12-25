@@ -6,7 +6,7 @@ import com.udacity.asteroid.domain.util.MainCoroutineRule
 import com.udacity.asteroid.domain.util.ResultType
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
-import org.hamcrest.MatcherAssert
+import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.Is
 import org.hamcrest.core.IsEqual
 import org.junit.Assert
@@ -35,7 +35,7 @@ class PictureRepositoryTest {
         pictureRepository.setReturnError(false)
 
         val data = pictureRepository.get() as ResultType.Success
-        MatcherAssert.assertThat(data.value, IsEqual(pictureModel))
+        assertThat(data.value, IsEqual(pictureModel))
     }
 
     @Test
@@ -43,14 +43,19 @@ class PictureRepositoryTest {
         pictureRepository.setReturnError(true)
 
         val data = pictureRepository.get() as ResultType.Error
-        MatcherAssert.assertThat(data.value, IsEqual(error))
+        assertThat(data.value, IsEqual(error))
     }
 
     @Test
     fun save_Success() = mainCoroutineRule.runBlockingTest {
         pictureRepository.savePicture(pictureModel)
         Assert.assertNotNull((pictureRepository.data))
-        MatcherAssert.assertThat(pictureRepository.data, Is.`is`(pictureModel))
+        assertThat(pictureRepository.data, Is.`is`(pictureModel))
+    }
+
+    @Test
+    fun save_Error() = mainCoroutineRule.runBlockingTest {
+        Assert.assertNull((pictureRepository.data))
     }
 
 }
