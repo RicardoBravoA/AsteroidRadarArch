@@ -14,6 +14,8 @@ import org.hamcrest.CoreMatchers.notNullValue
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.*
+import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertNull
 import org.junit.runner.RunWith
 
 @ExperimentalCoroutinesApi
@@ -93,25 +95,21 @@ class AsteroidDaoTest {
         database.asteroidDao().insertAsteroid(asteroidEntity)
 
         val response = database.asteroidDao().getAsteroidById(999L)
-        Assert.assertNull(response)
+        assertNull(response)
     }
 
     @Test
     fun validateNotPictureData() = runBlockingTest {
         val response = database.asteroidDao().getPicture()
-        Assert.assertNull(response)
+        assertNull(response)
     }
 
     @Test
     fun validateInsertPicture() = runBlockingTest {
-        database.asteroidDao().insertPicture(asteroidEntity)
+        database.asteroidDao().insertPicture(pictureEntity)
 
-        val response = database.asteroidDao().getAsteroidList(
-            DataDateUtil.currentDate(),
-            DataDateUtil.currentDate(DataDateUtil.DEFAULT_END_DATE_DAYS)
-        )
-
-        assertThat(response.size, `is`(1))
+        val response = database.asteroidDao().getPicture()
+        assertNotNull(response)
     }
 
 }
