@@ -6,6 +6,7 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.udacity.asteroid.data.storage.entity.AsteroidEntity
+import com.udacity.asteroid.data.storage.entity.PictureEntity
 import com.udacity.asteroid.data.util.DataDateUtil
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
@@ -13,6 +14,8 @@ import org.hamcrest.CoreMatchers.notNullValue
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.*
+import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertNull
 import org.junit.runner.RunWith
 
 @ExperimentalCoroutinesApi
@@ -22,6 +25,7 @@ class AsteroidDaoTest {
 
     private lateinit var database: AsteroidDatabase
     private lateinit var asteroidEntity: AsteroidEntity
+    private lateinit var pictureEntity: PictureEntity
 
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
@@ -38,6 +42,11 @@ class AsteroidDaoTest {
                 0L, "Codename 0", DataDateUtil.currentDate(),
                 0.0, 0.0, 0.0, 0.0, true
             )
+
+        pictureEntity = PictureEntity(
+            "url", "mediaType", "title",
+            "date", "explanation"
+        )
     }
 
     @After
@@ -86,7 +95,35 @@ class AsteroidDaoTest {
         database.asteroidDao().insertAsteroid(asteroidEntity)
 
         val response = database.asteroidDao().getAsteroidById(999L)
-        Assert.assertNull(response)
+        assertNull(response)
+    }
+
+    @Test
+    fun validateNotPictureData() = runBlockingTest {
+        val response = database.asteroidDao().getPicture()
+        assertNull(response)
+    }
+
+    @Test
+    fun validateInsertPicture() = runBlockingTest {
+        database.asteroidDao().insertPicture(pictureEntity)
+
+        val response = database.asteroidDao().getPicture()
+        assertNotNull(response)
+    }
+
+    @Test
+    fun insertPictureAndGetById() = runBlockingTest {
+        database.asteroidDao().insertPicture(pictureEntity)
+
+        val response = database.asteroidDao().getPictureByUrl(pictureEntity.url)
+
+        assertThat(response as PictureEntity, notNullValue())
+        assertThat(response.url, `is`(pictureEntity.url))
+        assertThat(response.mediaType, `is`(pictureEntity.mediaType))
+        assertThat(response.title, `is`(pictureEntity.title))
+        assertThat(response.date, `is`(pictureEntity.date))
+        assertThat(response.explanation, `is`(pictureEntity.explanation))
     }
 
 }

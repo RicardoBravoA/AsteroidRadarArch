@@ -25,6 +25,9 @@ interface AsteroidDao {
     @Query("select * from picture")
     fun getPicture(): PictureEntity
 
+    @Query("select * from picture where url = :url")
+    fun getPictureByUrl(url: String): PictureEntity
+
     @Query("delete from picture")
     fun deletePicture()
 
