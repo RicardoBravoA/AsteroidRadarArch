@@ -112,4 +112,18 @@ class AsteroidDaoTest {
         assertNotNull(response)
     }
 
+    @Test
+    fun insertPictureAndGetById() = runBlockingTest {
+        database.asteroidDao().insertPicture(pictureEntity)
+
+        val response = database.asteroidDao().getPictureByUrl(pictureEntity.url)
+
+        assertThat(response as PictureEntity, notNullValue())
+        assertThat(response.url, `is`(pictureEntity.url))
+        assertThat(response.mediaType, `is`(pictureEntity.mediaType))
+        assertThat(response.title, `is`(pictureEntity.title))
+        assertThat(response.date, `is`(pictureEntity.date))
+        assertThat(response.explanation, `is`(pictureEntity.explanation))
+    }
+
 }
