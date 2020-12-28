@@ -67,7 +67,7 @@ class MainViewModelTest {
 
         val value = mainViewModel.asteroidList.getOrAwaitValue()
 
-        assertThat(value, nullValue())
+        assertThat(value, not(nullValue()))
 
     }
 
