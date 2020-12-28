@@ -3,6 +3,7 @@ package com.udacity.asteroid.radar.main
 import com.udacity.asteroid.domain.repository.FakeAsteroidRepository
 import com.udacity.asteroid.domain.repository.FakePictureRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import org.junit.Rule
 
 @ExperimentalCoroutinesApi
 class MainViewModelTest {
