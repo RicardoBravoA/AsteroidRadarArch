@@ -1,5 +1,6 @@
 package com.udacity.asteroid.radar.main
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -56,6 +57,7 @@ class MainViewModel(
         )
     }
 
+    @VisibleForTesting
     private fun getData(startDate: String, endDate: String) {
         viewModelScope.launch {
             _status.value = NetworkStatus.LOADING

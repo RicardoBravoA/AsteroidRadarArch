@@ -58,3 +58,16 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
+
+task jarTests(type: Jar, dependsOn: "assembleDebugUnitTest") {
+    getArchiveClassifier().set('tests')
+    from "$buildDir/tmp/kotlin-classes/debugUnitTest"
+}
+
+configurations {
+    unitTestArtifact
+}
+
+artifacts {
+    unitTestArtifact jarTests
+}
