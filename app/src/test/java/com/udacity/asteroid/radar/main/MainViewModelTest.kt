@@ -8,8 +8,11 @@ import com.udacity.asteroid.domain.repository.FakePictureRepository
 import com.udacity.asteroid.radar.util.MainCoroutineRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
+import org.hamcrest.CoreMatchers
+import org.hamcrest.MatcherAssert
 import org.junit.Before
 import org.junit.Rule
+import org.junit.Test
 
 @ExperimentalCoroutinesApi
 class MainViewModelTest {
@@ -54,6 +57,20 @@ class MainViewModelTest {
         pictureRepository.savePicture(pictureModel)
 
         mainViewModel = MainViewModel(asteroidRepository, pictureRepository)
+    }
+
+    @Test
+    fun getData_weekTest() {
+        mainViewModel.weekData()
+
+        // Then the new task event is triggered
+        val value = mainViewModel.asteroidList.getOrAwaitValue()
+
+        MatcherAssert.assertThat(
+            value.getContentIfNotHandled(),
+            CoreMatchers.not(CoreMatchers.nullValue())
+        )
+
     }
 
 }
