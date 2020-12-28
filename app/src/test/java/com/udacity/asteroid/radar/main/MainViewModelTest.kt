@@ -95,4 +95,21 @@ class MainViewModelTest {
 
     }
 
+    @Test
+    fun getData_savedTest() {
+        mainCoroutineRule.pauseDispatcher()
+
+        mainViewModel.saved()
+
+        val value = mainViewModel.asteroidList.getOrAwaitValue()
+
+        mainCoroutineRule.resumeDispatcher()
+
+        assertThat(value, not(nullValue()))
+
+        val status = mainViewModel.status.getOrAwaitValue()
+        assertThat(status, `is`(NetworkStatus.DONE))
+
+    }
+
 }
