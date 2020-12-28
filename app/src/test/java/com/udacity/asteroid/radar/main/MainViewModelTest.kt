@@ -1,5 +1,6 @@
 package com.udacity.asteroid.radar.main
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.udacity.asteroid.domain.repository.FakeAsteroidRepository
 import com.udacity.asteroid.domain.repository.FakePictureRepository
 import com.udacity.asteroid.radar.util.MainCoroutineRule
@@ -16,5 +17,8 @@ class MainViewModelTest {
     @ExperimentalCoroutinesApi
     @get:Rule
     var mainCoroutineRule = MainCoroutineRule()
+
+    @get:Rule
+    var instantExecutorRule = InstantTaskExecutorRule()
 
 }
