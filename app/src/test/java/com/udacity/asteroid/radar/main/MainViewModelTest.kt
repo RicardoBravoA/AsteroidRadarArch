@@ -6,10 +6,12 @@ import com.udacity.asteroid.domain.model.PictureModel
 import com.udacity.asteroid.domain.repository.FakeAsteroidRepository
 import com.udacity.asteroid.domain.repository.FakePictureRepository
 import com.udacity.asteroid.radar.util.MainCoroutineRule
+import com.udacity.asteroid.radar.util.getOrAwaitValue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
-import org.hamcrest.CoreMatchers
-import org.hamcrest.MatcherAssert
+import org.hamcrest.CoreMatchers.not
+import org.hamcrest.CoreMatchers.nullValue
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -49,7 +51,7 @@ class MainViewModelTest {
 
 
     @Before
-    fun setupViewModel() = mainCoroutineRule.runBlockingTest {
+    fun setupViewModel() = runBlockingTest {
         asteroidRepository = FakeAsteroidRepository()
         pictureRepository = FakePictureRepository()
 
@@ -63,13 +65,9 @@ class MainViewModelTest {
     fun getData_weekTest() {
         mainViewModel.weekData()
 
-        // Then the new task event is triggered
         val value = mainViewModel.asteroidList.getOrAwaitValue()
 
-        MatcherAssert.assertThat(
-            value.getContentIfNotHandled(),
-            CoreMatchers.not(CoreMatchers.nullValue())
-        )
+        assertThat(value, nullValue())
 
     }
 
