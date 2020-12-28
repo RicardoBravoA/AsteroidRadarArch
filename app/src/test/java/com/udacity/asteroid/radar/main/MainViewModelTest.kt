@@ -6,11 +6,11 @@ import com.udacity.asteroid.domain.model.PictureModel
 import com.udacity.asteroid.domain.repository.FakeAsteroidRepository
 import com.udacity.asteroid.domain.repository.FakePictureRepository
 import com.udacity.asteroid.radar.util.MainCoroutineRule
+import com.udacity.asteroid.radar.util.NetworkStatus
 import com.udacity.asteroid.radar.util.getOrAwaitValue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
-import org.hamcrest.CoreMatchers.not
-import org.hamcrest.CoreMatchers.nullValue
+import org.hamcrest.CoreMatchers.*
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
 import org.junit.Rule
@@ -63,11 +63,52 @@ class MainViewModelTest {
 
     @Test
     fun getData_weekTest() {
+        mainCoroutineRule.pauseDispatcher()
+
         mainViewModel.weekData()
 
         val value = mainViewModel.asteroidList.getOrAwaitValue()
 
+        mainCoroutineRule.resumeDispatcher()
+
         assertThat(value, not(nullValue()))
+
+        val status = mainViewModel.status.getOrAwaitValue()
+        assertThat(status, `is`(NetworkStatus.DONE))
+
+    }
+
+    @Test
+    fun getData_todayTest() {
+        mainCoroutineRule.pauseDispatcher()
+
+        mainViewModel.today()
+
+        val value = mainViewModel.asteroidList.getOrAwaitValue()
+
+        mainCoroutineRule.resumeDispatcher()
+
+        assertThat(value, not(nullValue()))
+
+        val status = mainViewModel.status.getOrAwaitValue()
+        assertThat(status, `is`(NetworkStatus.DONE))
+
+    }
+
+    @Test
+    fun getData_savedTest() {
+        mainCoroutineRule.pauseDispatcher()
+
+        mainViewModel.saved()
+
+        val value = mainViewModel.asteroidList.getOrAwaitValue()
+
+        mainCoroutineRule.resumeDispatcher()
+
+        assertThat(value, not(nullValue()))
+
+        val status = mainViewModel.status.getOrAwaitValue()
+        assertThat(status, `is`(NetworkStatus.DONE))
 
     }
 
