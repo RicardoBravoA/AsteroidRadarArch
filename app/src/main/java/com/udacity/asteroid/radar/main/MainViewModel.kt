@@ -57,7 +57,6 @@ class MainViewModel(
         )
     }
 
-    @VisibleForTesting
     private fun getData(startDate: String, endDate: String) {
         viewModelScope.launch {
             _status.value = NetworkStatus.LOADING

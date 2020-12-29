@@ -75,7 +75,6 @@ class MainViewModelTest {
 
         val status = mainViewModel.status.getOrAwaitValue()
         assertThat(status, `is`(NetworkStatus.DONE))
-
     }
 
     @Test
@@ -92,7 +91,6 @@ class MainViewModelTest {
 
         val status = mainViewModel.status.getOrAwaitValue()
         assertThat(status, `is`(NetworkStatus.DONE))
-
     }
 
     @Test
@@ -109,7 +107,7 @@ class MainViewModelTest {
 
         val status = mainViewModel.status.getOrAwaitValue()
         assertThat(status, `is`(NetworkStatus.DONE))
-
     }
+
 
 }
