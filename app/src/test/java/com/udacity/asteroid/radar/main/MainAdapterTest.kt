@@ -1,5 +1,5 @@
 package com.udacity.asteroid.radar.main
-
+/*
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.udacity.asteroid.domain.model.AsteroidModel
 import com.udacity.asteroid.domain.model.PictureModel
@@ -58,4 +58,4 @@ class MainAdapterTest {
         println(asteroidModel.toString())
     }
 
-}
+}*/
