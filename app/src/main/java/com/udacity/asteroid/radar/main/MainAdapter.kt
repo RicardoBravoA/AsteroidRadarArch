@@ -3,6 +3,7 @@ package com.udacity.asteroid.radar.main
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.annotation.VisibleForTesting
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -28,6 +29,11 @@ class MainAdapter(private val asteroidClick: (asteroidModel: AsteroidModel) -> U
             Type.ITEM.ordinal -> ItemViewHolder.from(parent)
             else -> throw ClassCastException("Unknown viewType $viewType")
         }
+    }
+
+    @VisibleForTesting
+    fun item(position: Int): MainItem {
+        return getItem(position)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
