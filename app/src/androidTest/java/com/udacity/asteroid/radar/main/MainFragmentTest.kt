@@ -79,11 +79,11 @@ class MainFragmentTest {
             pictureRepository.savePicture(pictureModel)
         }
 
-        /*onView(ViewMatchers.withId(R.id.asteroid_recycler_view)).check(
+        onView(ViewMatchers.withId(R.id.asteroid_recycler_view)).check(
             matches(
-                hasChildCount(4)
+                hasChildCount(0)
             )
-        )*/
+        )
     }
 
 }
