@@ -40,15 +40,16 @@ android {
         includeAndroidResources = true
         returnDefaultValues = true
     }
+
     packagingOptions {
-        pickFirst  'META-INF/*'
+        pickFirst 'META-INF/*'
         pickFirst '**/META-INFMANIFEST.MF'
     }
 
     sourceSets {
-        androidTest.java.srcDirs += ["${project(':domain').projectDir}/src/androidTest/java"]
-        androidTest.java.srcDirs += ["${project(':domain').projectDir}/src/test/java"]
+        /*androidTest.java.srcDirs += ["${project(':domain').projectDir}/src/androidTest/java"]*/
         test.java.srcDirs += ["${project(':domain').projectDir}/src/test/java"]
+        androidTest.java.srcDirs += ["${project(':domain').projectDir}/src/test/java"]
 //        test.java.srcDirs += ["${project(':domain').projectDir}/src/androidTest/java"]
     }
 
@@ -72,7 +73,8 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.1.0"
 
     implementation 'com.squareup.picasso:picasso:2.71828'
-    
+    implementation "androidx.test.espresso:espresso-idling-resource:3.3.0"
+
     implementation project(path: ':data')
     implementation project(path: ':domain')
 //    androidTestImplementation project(path: ':domain')
@@ -90,10 +92,25 @@ dependencies {
 
     androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9"
     androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.9"
-    androidTestImplementation "androidx.fragment:fragment-testing:1.2.5"
+    debugImplementation "androidx.fragment:fragment-testing:1.2.5"
+    debugImplementation 'androidx.test:core:1.3.0'
+//    androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    androidTestImplementation "org.mockito:mockito-core:2.8.9"
-    androidTestImplementation "com.linkedin.dexmaker:dexmaker-mockito:2.12.1"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:3.3.0"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:3.3.0"
+    androidTestImplementation "androidx.test.espresso.idling:idling-concurrent:3.3.0"
+    androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
+//    androidTestImplementation "androidx.test:runner:1.3.0"
+    androidTestImplementation 'org.mockito:mockito-android:2.28.2'
+//    androidTestImplementation "org.mockito:mockito-core:2.28.2"
+//    androidTestImplementation "com.linkedin.dexmaker:dexmaker-mockito:2.12.1"
 //    androidTestImplementation project(path: ':domain', configuration: 'unitTestArtifact')
+
+    androidTestImplementation 'androidx.test:runner:1.3.0'
+    androidTestImplementation 'androidx.test:rules:1.3.0'
+//    androidTestImplementation 'org.hamcrest:hamcrest-library:1.3'
+//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+//    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
+
 }
